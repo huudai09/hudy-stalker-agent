@@ -9,7 +9,10 @@ const iconPath = path.join(__dirname, 'icon-32.png');
 let appIcon = null;
 let win = null;
 
-// autoUpdater.setFeedURL({ url:  })
+const server = `https://test-tau-rose.vercel.app`;
+const url = `${server}/update/${process.platform}/${app.getVersion()}`;
+
+autoUpdater.setFeedURL({ url });
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
