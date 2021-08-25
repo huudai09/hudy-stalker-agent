@@ -9,7 +9,7 @@ const iconPath = path.join(__dirname, 'icon-32.png');
 let appIcon = null;
 let win = null;
 
-const server = `https://test-tau-rose.vercel.app`;
+const server = `https://hudy-agent-versions.vercel.app/`;
 const url = `${server}/update/${process.platform}/${app.getVersion()}`;
 
 autoUpdater.setFeedURL({ url });
