@@ -1,18 +1,14 @@
-const { app, Tray, Menu, BrowserWindow, autoUpdater } = require('electron');
+const { app, Tray, Menu, BrowserWindow } = require('electron');
 const path = require('path');
 const { start } = require('./main');
 const { setTray } = require('./helpers/tray');
+const { registerAutoUpdateEvent } = require('./libs/autoupdate');
 const { setBrowserWindow } = require('./helpers/browser-window');
 const { openUpdateWindow } = require('./screens/updateConfig/main');
 
 const iconPath = path.join(__dirname, 'icon-32.png');
 let appIcon = null;
 let win = null;
-
-const server = `https://hudy-agent-versions.vercel.app/`;
-const url = `${server}/update/${process.platform}/${app.getVersion()}`;
-
-autoUpdater.setFeedURL({ url });
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -52,12 +48,13 @@ const createWindow = () => {
     },
   ]);
 
-  appIcon.setToolTip('HudyAgent verifying..... 1.0.1');
+  appIcon.setToolTip('HudyAgent verifying.....');
   appIcon.setContextMenu(contextMenu);
 
   setBrowserWindow(win);
   setTray(appIcon);
   start();
+  registerAutoUpdateEvent();
 };
 
 // This method will be called when Electron has finished

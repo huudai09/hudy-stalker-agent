@@ -78,7 +78,6 @@ const signin = (configPath) => {
     }
 
     log.info('CONFIG DATA IS NOT EXIST');
-    showNotice('Agent start checking ....');
 
     // getting sign in agent page
     configRef.get().then((cfgSnapshot) => {
